@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <book></book>
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false;
+
+    /* 一个重要内置关系:
+     VueComponent.prototype.__proto__ === Vue.prototype
+     VueComponent组件都可以访问vue的属性,方法 */
+    Vue.prototype.x = 99;
+
+    let book = Vue.extend({
+      template: ` <div>
+      <h2>{{book}}</h2>
+      <button @click="btn">x</button>
+    </div>`,
+      data() {
+        return {
+          book: '侠义英雄传'
+        }
+      },
+      methods: {
+        btn() {
+          // this是VueComponent,它可以调用vue的x 
+          console.log(this.x)
+        }
+      },
+    })
+
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        msg: 'hello vue'
+      },
+      components: { book }
+    })
+
+    // 定义一个构造函数
+    /* function Demo() {
+      this.a = 1
+      this.b = 2
+    }
+    // 创建一个Demo的实例对象
+    const d = new Demo()
+
+
+    // prototype: 显示原型属性 
+    console.log(Demo.prototype)
+    // __proto__: 隐式原型属性
+    console.log(d.__proto__)
+    console.log(d.__proto__ === Demo.prototype) //true
+
+    Demo.prototype.x = 99;
+    console.log(d.x) */
+
+  </script>
+</body>
+
+</html>
