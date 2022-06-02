@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h4>江湖人称:{{name}}</h4>
+    <h4>江湖绝技:{{kungfu}}</h4>
+    <hr>
+    <h4>江湖人称:{{duan.name}}</h4>
+    <h4>江湖绝技:{{duan.kungfu.one}}</h4>
+    <button @click="addSex">性别</button>
+    <h4>朋友:{{duan.sex}}
+      <ul>
+        <li v-for="(f,i) in duan.friend" :key="i">
+          {{f.name}}--{{f.age}}
+        </li>
+      </ul>
+    </h4>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        name: '萧峰',
+        kungfu: '降龙十八章',
+        duan: {
+          name: '段誉',
+          kungfu: {
+            one: '六脉神剑',
+            two: '凌波微步',
+          },
+          friend: [
+            { name: '王语嫣', age: '18' },
+            { name: '木婉清', age: '20' }
+          ]
+        }
+      },
+      methods: {
+        addSex() {
+          // 给duan对象添加(sex:女)
+          // Vue.set不能用在data身上,只能用在data的对象身上
+          Vue.set(vm.duan, 'sex', '女')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

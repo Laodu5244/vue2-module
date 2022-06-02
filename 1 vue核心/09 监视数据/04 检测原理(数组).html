@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h4>{{msg}}</h4>
+    <button @click.once="btn">添加</button>
+    <ul>
+      <li v-for="(h,i) in hobby" :key="i">
+        {{h}}
+      </li>
+    </ul>
+    </h4>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        msg: '兴趣爱好',
+        hobby: [
+          '看书', '弹琴', "打代码"
+        ]
+      }, methods: {
+        btn() {
+          this.hobby.push('玩游戏')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

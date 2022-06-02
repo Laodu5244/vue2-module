@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <div>{{msg}}</div>
+    <!-- v-text会替换节点中的内容 -->
+    <div v-text="msg">666</div>
+    <div v-text="str"></div>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'hello vue',
+        // v-text无法解析标签
+        str: '<h1>你好</h1>'
+      }
+    })
+  </script>
+</body>
+
+</html>

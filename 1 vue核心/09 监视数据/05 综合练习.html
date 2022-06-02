@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <button @click="age++">年龄++</button>
+    <button @click="addSex">添加sex</button>
+    <button @click="duan.sex='男'">修改性别</button>
+    <button @click="addli">首位添加</button>
+    <button @click="update">首位修改</button>
+    <button @click="hobby">添加爱好</button>
+    <button @click="set">修改爱好</button>
+    <h4>{{age}}</h4>
+    <h4>江湖绝技:{{kungfu}}</h4>
+    <hr>
+    <h4>江湖人称:{{duan.name}}</h4>
+    <h4>江湖绝技:{{duan.kungfu.one}}</h4>
+    <ul>
+      <li v-for="(f,i) in duan.friend" :key="i">
+        {{f.name}}--{{f.age}}
+      </li>
+      <h5 v-if='duan.sex'>性别:{{duan.sex}}</h5>
+    </ul>
+
+    <h4>爱好:
+      <ul>
+        <li v-for="(h,i) in duan.hobby" :key="i">
+          {{h}}
+        </li>
+      </ul>
+    </h4>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        age: '28',
+        kungfu: '降龙十八章',
+        duan: {
+          name: '段誉',
+          kungfu: {
+            one: '六脉神剑',
+            two: '凌波微步',
+          },
+          friend: [
+            { name: '王语嫣', age: '18' },
+            { name: '木婉清', age: '20' }
+          ],
+          hobby: [
+            '看书', '弹琴', "打代码"
+          ]
+        },
+      },
+      methods: {
+        addSex() {
+          Vue.set(this.duan, 'sex', '女')
+        },
+        addli() {
+          this.duan.friend.unshift({ name: '敏敏特穆尔', age: 24 })
+        },
+        update() {
+          this.duan.friend[0].name = '周芷若';
+        },
+        hobby() {
+          this.duan.hobby.push('谈恋爱')
+        },
+        set() {
+          // this.duan.hobby.splice(0, 1, '听音乐')
+          this.$set(this.duan.hobby, 0, '听音乐')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>列表过滤</h2>
+    <input type="text" placeholder="请输入名字" v-model="key_word">
+    <ul>
+      <li v-for="(p,index) in fil" :key="index">
+        {{p.name}}-{{p.age}}-{{p.sex}}
+      </li>
+    </ul>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        key_word: '',
+        persons: [
+          {
+            name: '马冬梅', age: '18', sex: '女'
+          },
+          {
+            name: '周冬雨', age: '19', sex: '女'
+          },
+          {
+            name: '周杰伦', age: '20', sex: '男'
+          },
+          {
+            name: '温兆伦', age: '24', sex: '男'
+          }
+        ]
+      },
+      computed: {
+        fil() {
+          return this.persons.filter((n) => {
+            return n.name.indexOf(this.key_word) !== -1;
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

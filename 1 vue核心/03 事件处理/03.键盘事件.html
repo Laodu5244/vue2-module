@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <input type="text" placeholder="按下回车提示输入" @keyup.enter="keyup">
+    <input type="text" placeholder="按下左shift提示输入" @keydown.zuoshift="keydown">
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 自己定义一个按键事件
+    Vue.config.keyCodes.zuoshift = 16;
+    new Vue({
+      el: '#root',
+      methods: {
+        keyup(e) {
+          console.log(e.target.value)
+        },
+        keydown(e) {
+          console.log(e.target.value)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

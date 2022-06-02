@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>v-show</title>
+</head>
+
+<body>
+  <div id="root">
+    <!-- v-show: 用display:none隐藏了元素 -->
+    <h2 v-show="show">{{msg}}</h2>
+    <!-- v-if: 删除dom节点 -->
+    <h2 v-if="show">{{msg}}</h2>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'hello,vue',
+        show: false
+      }
+    })
+  </script>
+</body>
+
+</html>

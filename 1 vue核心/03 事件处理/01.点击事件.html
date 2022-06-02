@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>欢迎打开我的{{message}}</h2>
+    <button v-on:click="btn">切换</button>
+    <!-- v-on:click 可以简写为@click  -->
+    <button @click="btn2(666,$event)">点击</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: '网页'
+      },
+      // methods是vue方法
+      methods: {
+        // vue方法中只有一个参数是event
+        btn(event) { //这里不能写箭头函数(this会指向window)
+          // 获取事件源目标()
+          console.log(event.target)
+          // 此处的this是vue对象
+          if (this.message === '网页') {
+            this.message = 'vue项目';
+          } else {
+            this.message = '网页';
+          }
+        },
+        btn2(num, event) {
+          console.log(num, event.target);
+          alert('hello vue!')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>{{msg}}</h2>
+    <ul>
+      <!-- 遍历对象 -->
+      <li v-for=" (val,k) in hero" :key="k">
+        {{k}}-{{val}}
+      </li>
+    </ul>
+    <hr>
+    <h2>遍历字符串</h2>
+    <ul>
+      <!-- 遍历字符串 -->
+      <li v-for=" (char,i) in str" :key="i">
+        {{char}}-{{i}}
+      </li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: '英雄',
+        hero: {
+          firstname: '北丐',
+          lastname: '洪七公',
+          kungfu: '降龙十八掌'
+        },
+        str: 'hello'
+      }
+    })
+  </script>
+</body>
+
+</html>

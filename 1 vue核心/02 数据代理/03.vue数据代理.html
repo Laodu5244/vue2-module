@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>名称:{{name}}</h2>
+    <h2>职业:{{job}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false;
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        name: '老毛',
+        job: '程序员'
+      }
+    })
+
+    // data中的数据在_data中,通过vm对象代理data对象的数据
+    console.log(vm._data.name)
+    // data中的数据改变,页面上的值会实时自动改变(响应式)
+    setTimeout(() => {
+      vm._data.name = "laomao";
+      console.log(vm._data.name)
+    }, 2000);
+
+  </script>
+</body>
+
+</html>

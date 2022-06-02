@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <button @click="btn">切换天气</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false;
+    new Vue({
+      el: '#root',
+      data() {
+        return {
+          ishot: true
+        }
+      },
+      computed: {
+        info() {
+          return this.ishot ? '炎热' : '凉爽';
+        }
+      },
+      methods: {
+        btn() {
+          this.ishot = !this.ishot;
+        }
+      },
+      // watch: 监视属性
+      watch: {
+        ishot: {
+          // 调用时执行
+          handler(n, o) {
+            // 第一个参数:改变前的属性
+            // 第二个属性:改变后的属性
+            console.log('ishotb被修改了', ('改变前:' + n), ('改变后:' + o));
+          },
+          // immediate: 立即执行
+          immediate: true
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    姓: <input type="text" v-model="firstname"><br>
+    名: <input type="text" v-model="lastname"><br>
+    <!-- 计算属性方法 -->
+    全名: <span>{{fullname}}</span>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        firstname: '张',
+        lastname: '三'
+      },
+      // computed: 计算属性
+      computed: {
+        fullname: {
+          // 当有人读取fullname时,get就会被调用
+          get() { // 返回值是fullname的值
+            console.log('get被调用了')
+            return this.firstname + '-' + this.lastname;
+          },
+          // 当有人修改fullname时,set就会被调用
+          set(value) {
+            console.log('set被调用了')
+            // split(): 拆分数组
+            let arr = value.split('-');
+            this.firstname = arr[0];
+            this.lastname = arr[1];
+
+          }
+        }
+      }
+    })
+    setTimeout(() => {
+      vm.fullname = '李-四'
+    }, 2000)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 行内写法 -->
+    <div class="basic" :style="css">{{msg}}</div>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'test',
+        css: {
+          fontSize: '40px',
+          color: 'red',
+          width: '300px',
+          height: '100px',
+          border: '1px solid #999'
+        }
+      },
+      methods: {
+        _mood() {
+          let arr = ['happy', 'sad', 'normal'];
+          let index = Math.floor(Math.random() * 3);
+          this.mood = arr[index];
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

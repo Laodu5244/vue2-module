@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>有value时,数据会出错</h2>
+    <ul>
+      <!-- key为index,当顺序发生改变会出问题 -->
+      <li v-for=" (p,index) in persons" :key="index">
+        {{p.name}}-{{p.age}}
+        <input type="text">
+      </li>
+    </ul>
+    <button @click.once="btn">添加老刘</button>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        persons: [
+          { id: '01', name: '张三', age: '18' },
+          { id: '02', name: '李四', age: '19' },
+          { id: '03', name: '王五', age: '20' },
+        ]
+      },
+      methods: {
+        btn() {
+          let p = {
+            id: '04', name: '老刘', age: '24'
+          }
+          // 在数组前加一个新对象
+          this.persons.unshift(p);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

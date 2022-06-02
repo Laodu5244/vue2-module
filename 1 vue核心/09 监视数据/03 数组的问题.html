@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <button @click="update">更新信息</button>
+    <ul>
+      <li v-for="(p,index) in persons">
+        {{p.name}}-{{p.age}}-{{p.sex}}
+      </li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        persons: [{
+          name: '灭绝师太',
+          age: '42',
+          sex: '女'
+        },
+        {
+          name: '东方不败',
+          age: '35',
+          sex: '男'
+        },
+        {
+          name: '丁春秋',
+          age: '46',
+          sex: '男'
+        },
+        {
+          name: '梅超风',
+          age: '24',
+          sex: '女'
+        },
+        {
+          name: '东邪',
+          age: '34',
+          sex: '男'
+        }
+        ]
+      },
+      methods: {
+        update() {
+          // 无效
+          // this.persons[0] = { name: '李莫愁', age: '36', sex: '女' }
+
+          // 改变数组必须用vue规定的七个方法,(或者Vue.set())
+          /* push()
+             pop()
+             shift()
+             unshift()
+             splice()
+             sort()
+             reverse() */
+          this.persons.splice(0, 1, { name: '李莫愁', age: '36', sex: '女' })
+          this.persons.push({ name: '白发魔女', age: '26', sex: '女' })
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

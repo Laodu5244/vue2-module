@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-bind: 单向数据绑定  -->
+    单向数据绑定:<input type="text" v-bind:value="name"><br>
+    <!-- v-model: 双向向数据绑定  -->
+    双向数据绑定:<input type="text" v-model:value="name"><br>
+
+    <!-- 下行代码报错,v-model只能用在表单类元素中 -->
+    <!-- <h2 v-model:x="name">你好vue</h2> -->
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        name: 'vue'
+      }
+    })
+  </script>
+</body>
+
+</html>

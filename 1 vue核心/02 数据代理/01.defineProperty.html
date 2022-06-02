@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    Vue.config.productionTip = false;
+    let person = {
+      name: '张三',
+      sex: '男',
+    }
+
+    //  Object.defineProperty()给对象添加属性
+    /*   参数1: 指定哪个对象
+      参数2: 添加的属性名
+      参数3: 给属性添加配置项
+      此方法添加的属性不可枚举(不参与遍历) 
+      此方法添加的属性不可更改
+      此方法添加的属性不可删除 */
+
+    Object.defineProperty(person, 'age', {
+      value: 18,
+      /* // 控制属性是否可以枚举,默认false 
+      enumerable: true,
+      // 控制属性是否可以更改,默认false 
+      writable: true,
+      // 控制属性是否可以删除,默认false 
+      configurable: true, */
+    });
+    console.log(person)
+
+    let number = 20;
+    let stu = {
+      name: '李四',
+      sex: '男',
+    }
+
+    Object.defineProperty(stu, 'age', {
+      // 当读取stu的age属性时,get函数被调用
+      get() {
+        console.log('有人读取age属性了');
+        return number;
+      },
+      // 当修改stu的age属性时,set函数被调用
+      set(value) {
+        console.log('有人修改age属性了');
+        number = value;
+      }
+    });
+    console.log("-----------");
+    console.log(stu);
+    console.log(stu.age);
+    console.log("-----------");
+    stu.age = 24;
+    console.log(stu.age);
+
+  </script>
+</body>
+
+</html>

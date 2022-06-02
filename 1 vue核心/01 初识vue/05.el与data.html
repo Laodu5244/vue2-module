@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h1>{{message}}</h1>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // el的两种写法
+    /*  let v = new Vue({
+       // el: '#root', //第一种写法
+       data: {
+         message: '动态数据'
+       }
+     })
+     console.log(v)
+     v.$mount('#root'); //第二种写法 */
+
+    // data的两种写法
+    new Vue({
+      el: '#root',
+      // 对象式
+      /* data: {
+        message: '动态数据'
+      }, */
+
+      // 函数式(此处不能写箭头函数)
+      data() {
+        console.log(this); //此处的this是vue对象
+        return {
+          message: '动态数据'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

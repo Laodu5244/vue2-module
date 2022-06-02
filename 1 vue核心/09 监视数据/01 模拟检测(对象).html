@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    let data = {
+      a: 10,
+      b: 20,
+      c: 30
+    }
+
+    function Observer(obj) {
+      // 汇总对象中所有的属性形成一个数组
+      let keys = Object.keys(obj);
+      // 遍历
+      keys.forEach((k) => {
+        Object.defineProperty(this, k, {
+          get() {
+            return obj[k];
+            console.log('get被调用了');
+          },
+          set(val) {
+            obj[k] = val;
+            console.log('set被调用了');
+          }
+        })
+      })
+    }
+    // 创建一个用于监视date属性的实例对象
+    let obs = new Observer(data)
+    console.log(obs)
+
+    // 准备一个vm实例对象
+    let vm = {}
+    vm._data = data = obs;
+    console.log(vm)
+    vm._data.b = 123;
+    console.log(vm._data.b)
+
+  </script>
+</body>
+
+</html>

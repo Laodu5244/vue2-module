@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root">
+    <!-- v-cloak指令没有值,vue实例接管容器后,会移除v-cloak指令 -->
+    <div v-cloak>{{ msg }}</div>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'hello vue'
+      }
+    })
+  </script>
+</body>
+
+</html>

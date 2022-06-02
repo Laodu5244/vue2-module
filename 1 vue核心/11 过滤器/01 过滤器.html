@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h3>显示格式化后的时间</h3>
+    <!-- 计算属性实现 -->
+    <h3>现在是:{{fmttime}}</h3>
+    <!-- 方法实现 -->
+    <h3>现在是:{{gettime()}}</h3>
+    <!-- 过滤器实现 -->
+    <h3>现在是:{{time | timefil('YYYY_MM_DD')}}</h3>
+    <!-- 截取年份 -->
+    <h3>现在是:{{time | timefil('YYYY_MM_DD') | mySlice}}</h3>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script src="../js/day.js"></script>
+  <script>
+    // 全局过滤器(写在new Vue之前)
+    Vue.filter('mySlice', function (val) {
+      return val.slice(0, 4);
+    })
+    new Vue({
+      el: '#root',
+      data: {
+        time: Date.now()
+      },
+      computed: {
+        fmttime() {
+          return dayjs().format('YYYY年MM月DD日 HH:mm:ss')
+        }
+      },
+      methods: {
+        gettime() {
+          return dayjs().format('YYYY年MM月DD日 ')
+        }
+      },
+      // 局部过滤器
+      filters: {
+        timefil(val, str) {
+          return dayjs(val).format(str)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

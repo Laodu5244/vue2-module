@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- view 视图 -->
+  <div id="root">
+    <h1>名字:{{name}}</h1>
+    <h1>年龄:{{age}}</h1>
+    <h2>测试:{{$el}}</h2>
+    <h2>测试:{{_c}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false;
+
+    // new Vue({}): ViewModel 视图模型
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        // model 模型
+        name: '小明',
+        age: '18',
+      }
+    })
+    console.log(vm)
+  </script>
+</body>
+
+</html>

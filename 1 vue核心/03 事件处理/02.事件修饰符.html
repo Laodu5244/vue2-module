@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin-top: 20px;
+    }
+
+    #demo1 {
+      height: 50px;
+      background-color: skyblue;
+    }
+
+    .box1 {
+      height: 100px;
+      background: #999;
+    }
+
+    .box2 {
+      height: 50px;
+      background: pink;
+      margin-left: 50px;
+    }
+
+    .list {
+      background-color: orange;
+      height: 200px;
+      width: 200px;
+      overflow: auto;
+    }
+
+    .list li {
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 前三个修饰符常用 -->
+
+  <div id="root">
+    <h1>日月神教:{{name}}</h1>
+    <!-- prevent: 阻止默认行为 -->
+    <a href="http://baidu.com" @click.prevent="click">葵花宝典</a>
+    <!-- stop: 阻止事件冒泡 -->
+    <div @click="btn" id="demo1">
+      <button @click.stop="btn">按钮1</button>
+    </div>
+    <!-- once: 事件只触发一次 -->
+    <button @click.once="btn2">按钮2</button>
+
+    <!-- capture: 使用事件的捕获模式 -->
+    <div class="box1" @click.capture="btn3(1)">盒子1
+      <div class="box2" @click="btn3(2)">盒子2</div>
+    </div>
+
+    <!-- self: 只有event.target是当前操作的元素才触发事件 -->
+    <div @click.self="btn4" id="demo1">
+      <button @click="btn4">按钮4</button>
+    </div>
+
+    <!-- passive: 事件的默认行为立即执行,无需等待事件回调执行完毕 -->
+    <ul @wheel="demo" class="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data() {
+        return {
+          name: '东方不败'
+        }
+      },
+      methods: {
+        click() {
+          alert('葵花宝典')
+        },
+        btn() {
+          alert('hello vue')
+        },
+        btn2() {
+          alert('hello vue 222')
+        },
+        btn3(num) {
+          console.log(num);
+        },
+        btn4(e) {
+          console.log(e.target)
+        },
+        demo() {
+          for (let i = 0; i < 100; i++) {
+            console.log("@@")
+          }
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>

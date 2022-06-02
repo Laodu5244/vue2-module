@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <!-- 如果方法只有一个,可以直接在@click=""中简写 -->
+    <button @click="ishot = !ishot">切换天气</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data() {
+        return {
+          ishot: true
+        }
+      },
+      computed: {
+        info() {
+          return this.ishot ? '炎热' : '凉爽';
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

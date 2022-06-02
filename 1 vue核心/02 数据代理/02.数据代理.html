@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 数据代理:通过一个对象操作另一个对象 -->
+  <script>
+    let obj1 = { x: 100 }
+    let obj2 = { y: 200 }
+
+    Object.defineProperty(obj2, 'x', {
+      get() {
+        console.log('有人读取x属性了');
+        return obj1.x;
+      },
+      set(value) {
+        console.log('有人修改x属性了');
+        obj1.x = value;
+      }
+    })
+
+    console.log(obj1);
+    console.log(obj2);
+    console.log('-----------');
+    console.log(obj1.x);
+    console.log(obj2.x);
+    console.log('-----------');
+    // 给obj2的x赋值,,obj1的属性也会变(set())
+    obj2.x = 300;
+    console.log(obj1.x);
+    console.log(obj2.x);
+  </script>
+</body>
+
+</html>

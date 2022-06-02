@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    img {
+      width: 60%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <h2>当前n的值是:{{n}}</h2>
+    <button @click="add">n++</button>
+    <span>{{num}}</span>
+    <button @click="bye">销毁vue</button>
+  </div>
+  <img src="./lifecycle.png">
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        n: 1,
+        m: 5
+      },
+      methods: {
+        add() {
+          this.n++
+        },
+        bye() {
+          console.log('bye')
+          this.$destroy()
+        }
+      },
+      computed: {
+        num() {
+          return this.n + this.m
+        }
+      },
+      // 创建前
+      beforeCreate() {
+        console.log("beforeCreate");
+        // console.log(this);
+        // debugger; //卡一个断点
+        // 此时无法访问data,methods,computed,el
+      },
+      // 创建后
+      created() {
+        console.log("created");
+        // console.log(this);
+        // debugger; //卡一个断点
+        // 此时没有el,有data,methods,computed
+      },
+      // 挂载前
+      beforeMount() {
+        console.log("beforeMount");
+        // console.log(this);
+        // debugger; //卡一个断点
+        /* 此时没有el, 有data, methods, computed,页面呈现的是未经编译的dom结构,此时操作dom无效 */
+      },
+      // 挂载后
+      mounted() {
+        console.log("mounted", this.$el);
+        // console.log(this);
+        // document.querySelector('h2').innerHTML=123;
+        // debugger; //卡一个断点
+        /* 此时添加el, 有data, methods, computed
+        页面呈现的是经过vue编译的dom,此时操作dom有效(不推荐),至此初始化过程结束 */
+      },
+      // 更新前
+      beforeUpdate() {
+        console.log('beforeUpdate');
+        // console.log(this.n);
+        // debugger; //卡一个断点
+        /* 此时数据是新的 但页面是旧的
+        页面和数据尚未同步 */
+      },
+      // 更新后
+      updated() {
+        console.log('updated');
+        // console.log(this.n);
+        // debugger; //卡一个断点
+        /* 此时数据是新的 页面也是新的
+        页面和数据保持同步 */
+      },
+      // 销毁前
+      beforeDestroy() {
+        console.log('beforeDestroy')
+        // 即将取消所有绑定事件和方法,以及定时器和子组件
+      },
+      // 销毁后
+      destroyed() {
+        console.log('Destroyed')
+        // 销毁完毕
+      }
+    })
+  </script>
+</body>
+
+</html>

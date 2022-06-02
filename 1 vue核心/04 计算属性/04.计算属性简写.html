@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    姓: <input type="text" v-model="firstname"><br>
+    名: <input type="text" v-model="lastname"><br>
+    全名: <span>{{fullname}}</span>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false;
+    new Vue({
+      el: '#root',
+      data: {
+        firstname: '张',
+        lastname: '三'
+      },
+      computed: {
+        /* fullname: {
+          get() {
+            console.log('get被调用了')
+            return this.firstname + '-' + this.lastname;
+          }
+        } */
+        // 简写(只有确定不用set属性时才可以简写)
+        fullname() {
+          console.log('get被调用了')
+          return this.firstname + '-' + this.lastname;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

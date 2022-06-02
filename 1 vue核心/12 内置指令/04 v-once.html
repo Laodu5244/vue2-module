@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="root">
+    <!-- v-once: 初次动态渲染后,变成静态内容 -->
+    <h3 v-once>n的原始值是:{{num}}</h3>
+    <h3>n的值是:{{num}}</h3>
+    <button @click="num++">n++</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        num: 1
+      }
+    })
+  </script>
+</body>
+
+</html>

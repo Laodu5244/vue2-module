@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- v-html有安全性问题
+  v-html不要用在用户提交的内容上 -->
+  <div id="root">
+    <div>{{msg}}</div>
+    <!-- v-html可以解析标签 -->
+    <div v-html="str"></div>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'hello vue',
+
+        str: '<h1>你好</h1>'
+      }
+    })
+  </script>
+</body>
+
+</html>

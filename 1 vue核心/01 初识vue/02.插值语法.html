@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <!-- 准备一个容器 -->
+  <div id="root">
+    <!-- 插值语法: {{}} -->
+    <h1>hello,{{msg}}</h1>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 创建一个vue实例对象,并传入配置对象
+    new Vue({
+      el: '#root', //el指定vue实例为哪个容器服务
+      data: { //data为vue容器提供数据
+        msg: 'vue.js'
+      }
+    })
+
+    // new关键字
+    function demo(obj) {
+      this.x = obj.a
+    }
+    demo({ a: 10 })
+    console.log(window.x)
+
+    // 使用new调用demo时,demo中的this是demo的实例对象
+    let d = new demo({ a: 20 })
+    console.log(d.x)
+  </script>
+</body>
+
+</html>

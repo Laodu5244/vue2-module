@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .basic {
+      width: 300px;
+      height: 100px;
+      border: 1px solid #222;
+    }
+
+    .happy {
+      background: hotpink;
+    }
+
+    .sad {
+      background: #999;
+    }
+
+    .normal {
+      background: skyblue;
+    }
+
+    .radius {
+      border-radius: 10px;
+    }
+
+    .color {
+      color: rgb(2, 61, 120);
+      font-weight: bold;
+    }
+
+    .size {
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 绑定class样式: 字符串写法
+      适用于样式的类名不确定,需要动态指定 -->
+    <div class="basic" :class="mood" @click="_mood">{{msg}}</div><br>
+
+    <!-- 绑定class样式: 数组写法
+      绑定的样式个数名字确定,但要动态决定用不用 -->
+    <div class="basic" :class="style">{{msg}}</div><br>
+
+    <!-- 绑定class样式: 对象写法
+      适用于绑定的样式个数不确定,名字也不确定 -->
+    <div class="basic" :class="classObj">{{msg}}</div><br>
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'hello vue!',
+        mood: '',
+        style: ['radius', "color", "size", "happy"],
+        classObj: {
+          radius: true,
+          color: true,
+          size: true,
+          happy: false,
+        }
+      },
+      methods: {
+        _mood() {
+          let arr = ['happy', 'sad', 'normal'];
+          let index = Math.floor(Math.random() * 3);
+          this.mood = arr[index];
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

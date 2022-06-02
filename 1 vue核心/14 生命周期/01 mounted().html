@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2 :style="{opacity}">vue很简单</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#root',
+      data: {
+        opacity: 1
+      },
+      // mounted()是一个生命周期函数
+      // vue完成模板的解析,并把初始真实dom元素放入页面后(挂载完毕)调用mounted
+      mounted() {
+        setInterval(() => {
+          this.opacity -= 0.01
+          if (this.opacity <= 0) {
+            this.opacity = 1;
+          }
+        }, 10)
+      }
+    })
+
+    // 通过外部定时器实现(不推荐)
+    /* setInterval(() => {
+      vm.opacity -= 0.01
+      if (vm.opacity <= 0) {
+        vm.opacity = 1;
+      }
+    }, 10) */
+  </script>
+</body>
+
+</html>

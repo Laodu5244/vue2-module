@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+    
+<body>
+
+  <div id="root">
+
+    <h3>{{msg}}</h3>
+    <!-- v-pre: 跳过节点的渲染过程  -->
+    <h3 v-pre>{{msg}}</h3>
+    <!-- 对写死的节点使用v-pre可以提升性能  -->
+    <h3 v-pre>react也不难</h3>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: 'Vue其实很简单',
+      }
+    })
+  </script>
+</body>
+
+</html>

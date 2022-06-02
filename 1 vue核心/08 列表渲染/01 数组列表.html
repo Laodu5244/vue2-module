@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>{{msg}}</h2>
+    <ul>
+      <!-- 有相同父元素的子集元素必须有独特的key -->
+      <li v-for=" p in persons" :key="p.id">
+        {{p.name}}-{{p.age}}
+      </li>
+      <hr>
+      <!-- 第二个参数是下标 -->
+      <li v-for=" (p,i) in persons" :key="i">
+        {{p.id}}-{{p.name}}
+      </li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        msg: '人员列表',
+        persons: [
+          { id: '01', name: '张三', age: '18' },
+          { id: '02', name: '李四', age: '19' },
+          { id: '03', name: '王五', age: '20' },
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

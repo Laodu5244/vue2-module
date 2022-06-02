@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <!-- @submit.prevent 提交表单,阻止默认行为 -->
+    <form @submit.prevent="demo">
+      <label for="demo">账号:</label>
+      <input type="text" id="demo" v-model="userInfo.account"> <br>
+      <label for="pass">密码:</label>
+
+      <!-- v-model.trim 过滤空格 -->
+      <input type="password" id="pass" v-model.trim="userInfo.password"><br>
+      <label for="age">年龄:</label>
+
+      <!-- v-model.number:把收集的字符转成数字 -->
+      <input type="number" id="age" v-model.number="userInfo.age"><br>
+
+      性别: <input type="radio" name="sex" v-model="userInfo.sex" value="male">男
+      <input type="radio" name="sex" v-model="userInfo.sex" value="female">女 <br>
+      爱好: <input type="checkbox" v-model="userInfo.hobby" value="hobby1">看书
+      <input type="checkbox" v-model="userInfo.hobby" value="hobby2">弹琴
+      <input type="checkbox" v-model="userInfo.hobby" value="hobby3">打代码 <br>
+
+      <select v-model="userInfo.city">
+        <option value="where">请选择</option>
+        <option value="bei">北京</option>
+        <option value="shang">上海</option>
+        <option value="wu">武汉</option>
+        <option value="shen">深圳</option>
+      </select> <br>
+
+      <!-- v-model.lazy:失去焦点后收集 -->
+      详细: <textarea cols="20" rows="3" v-model.lazy="userInfo.other"></textarea> <br>
+
+      <input type="checkbox" v-model="userInfo.agree">
+      点击打开 <a href="http://baidu.com">百度</a>
+      <br> <button>提交</button>
+    </form>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        userInfo: {
+          account: '',
+          password: '',
+          age: '',
+          sex: '',
+          // checkbox多选框要写成数组
+          hobby: [],
+          city: 'where',
+          other: '',
+          agree: '',
+        }
+      },
+      methods: {
+        demo() {
+          // 用生成的json文件,给后台传递数据
+          console.log(JSON.stringify(this.userInfo))
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

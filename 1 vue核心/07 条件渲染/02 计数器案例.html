@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>当前的数字是:{{n}}</h2>
+    <button @click="n++">N++</button>
+    <div v-show="n==1">angular</div>
+    <div v-show="n==2">react</div>
+    <div v-show="n==3">vue</div>
+    <div v-if="n==1">angular</div>
+    <div v-else-if="n==2">react</div>
+    <div v-else-if="n==3">vue</div>
+    <div v-else>jquery</div>
+
+    <!-- v-if与template -->
+    <template v-if="n===1">
+      <hr>
+      <div>angular</div>
+      <div>react</div>
+      <div>vue</div>
+    </template>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        n: 0
+      }
+    })
+  </script>
+</body>
+
+</html>

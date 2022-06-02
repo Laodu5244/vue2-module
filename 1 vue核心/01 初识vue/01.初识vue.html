@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>初识vue</title>
+</head>
+
+<body>
+  <!-- 准备一个容器 -->
+  <div id="root">
+    <!-- 插值语法: {{}} -->
+    <h1>动态数据: {{message}} </h1>
+  </div>
+
+  <!-- 引入vue -->
+  <script src="../js/vue.js"></script>
+  <script>
+    // 创建Vue实例
+    new Vue({
+      el: '#root',
+      data: {
+        message: 'hello vue!'
+      }
+    })
+  </script>
+</body>
+
+</html>

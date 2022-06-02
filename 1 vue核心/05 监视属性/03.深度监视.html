@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>a的值是:{{number.a}}</h2>
+    <button @click="number.a++">a++</button>
+    <h2>b的值是:{{number.b}}</h2>
+    <button @click="number.b++">b++</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.config.productionTip = false;
+    new Vue({
+      el: '#root',
+      data() {
+        return {
+          number: {
+            a: 1,
+            b: 1
+          }
+        }
+      },
+      watch: {
+        // 监视多级结构中某个属性的变化
+        'number.a': {
+          handler() {
+            console.log('a改变了')
+          }
+        },
+        'number.b': {
+          handler() {
+            console.log('b改变了')
+          }
+        },
+        // 监视多级结构中所有属性的变化
+        number: {
+          // deep: 深度监视
+          deep: true,
+          handler() {
+            console.log('number改变了')
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

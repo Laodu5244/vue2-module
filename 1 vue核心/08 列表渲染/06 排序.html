@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>列表过滤</h2>
+    <input type="text" placeholder="请输入名字" v-model="key_word">
+    <button @click="sort=2">升序</button>
+    <button @click="sort=1">降序</button>
+    <button @click="sort=0">原序</button>
+    <ul>
+      <li v-for="(p,index) in fil" :key="index">
+        {{p.name}}-{{p.age}}-{{p.sex}}
+      </li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+  new Vue({
+    el: '#root',
+    data: {
+      key_word: '',
+      sort: 0,
+      persons: [{
+          name: '灭绝师太',
+          age: '42',
+          sex: '女'
+        },
+        {
+          name: '东方不败',
+          age: '35',
+          sex: '男'
+        },
+        {
+          name: '丁春秋',
+          age: '46',
+          sex: '男'
+        },
+        {
+          name: '梅超风',
+          age: '24',
+          sex: '女'
+        },
+        {
+          name: '东邪',
+          age: '34',
+          sex: '男'
+        }
+      ]
+    },
+    computed: {
+      fil() {
+        const arr = this.persons.filter((p) => {
+          return p.name.indexOf(this.key_word) !== -1;
+        })
+        // 判断是否需要排序
+        if (this.sort) {
+          arr.sort((p1,p2)=>{
+            return this.sort ===1? p2.age-p1.age:p1.age-p2.age;
+          })
+        }
+        return arr;
+      }
+    }
+  })
+  </script>
+</body>
+
+</html>
