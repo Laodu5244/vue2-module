@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <app></app>
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 定义hero组件
+    let hero = Vue.extend({
+      template: `<div>
+        <h3>姓名:{{name}}</h3>
+        <h3>江湖人称:{{name2}}</h3>
+      </div>`,
+      data() {
+        return {
+          name: '谢逊',
+          name2: '金毛狮王'
+        }
+      }
+    })
+
+    // 定义persons组件
+    let persons = Vue.extend({
+      template: `<div>
+        <h3>{{msg}}</h3>
+        <hero-one></hero-one>
+      </div> `,
+      data() {
+        return {
+          msg: 'person组件'
+        }
+      },
+      components: {
+        "hero-one": hero
+      }
+    })
+    // 定义hello组件
+    let hello = {
+      template: `<h1>{{welcome}}</h1>`,
+      data() {
+        return {
+          welcome: 'welcome,hello vue!'
+        }
+      },
+    }
+    // 定义app组件
+    let app = {
+      template: `<div>
+        <hello></hello>
+        <h3>{{m}}</h3>
+    <persons></persons>
+      </div>`,
+      data() {
+        return {
+          m: 'app组件'
+        }
+      },
+      components: { persons, hello }
+    }
+    new Vue({
+      el: '#root',
+      // 注册局部组件
+      components: { app }
+    })
+  </script>
+</body>
+
+</html>
